@@ -196,18 +196,18 @@ if __name__ == '__main__':
     #id = input("please input your ID: ")
     id = "marcovaldong"
     user_url =  'https://www.zhihu.com/people/' + id
-    response = account.session.get(user_url, headers = HEADERS)
+    response = account.session.get(user_url, headers = HEADERS)   #利用这个session可以维持一个会话，保持登录状态
     #print(response.content.decode('utf-8'))  #decode解码
     soup = BeautifulSoup(response.content, 'lxml')
     name = soup.find('title').string.split()[0]    #把标签以外的内容打印出来，使用split分开,选取第一个字符串
     print("name: %s" % name)
     ID = id
     print("ID: %s" % id)
-    location = soup.find_all('meta')
-    print(location)
+    location = soup.find('meta')
+    print(location['charset'])
 
-
-
+    gender = soup.find(calss = 'Profile-main')
+    print(gender)
 
 
 
